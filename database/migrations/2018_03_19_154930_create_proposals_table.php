@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKontakkamisTable extends Migration
+class CreateProposalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,10 @@ class CreateKontakkamisTable extends Migration
      */
     public function up()
     {
-        Schema::create('kontakkamis', function (Blueprint $table) {
+        Schema::create('proposals', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('inovator_id')->unsigned();
+            $table->foreign('inovator_id')->references('id')->on('inovators');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ class CreateKontakkamisTable extends Migration
      */
     public function down()
     {
-        Schema::drop('kontakkamis');
+        Schema::drop('proposals');
     }
 }

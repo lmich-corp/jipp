@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInovasisTable extends Migration
+class CreateMaterisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,12 @@ class CreateInovasisTable extends Migration
      */
     public function up()
     {
-        Schema::create('inovasis', function (Blueprint $table) {
+        Schema::create('materis', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('superadmin_id')->unsigned();
+            $table->foreign('superadmin_id')->references('id')->on('superadmins');
             $table->string('nama');
+            $table->string('nama_file');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateInovasisTable extends Migration
      */
     public function down()
     {
-        Schema::drop('inovasis');
+        Schema::drop('materis');
     }
 }

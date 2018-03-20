@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEbooksTable extends Migration
+class CreateWartasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,11 @@ class CreateEbooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('ebooks', function (Blueprint $table) {
+        Schema::create('wartas', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('superadmin_id')->unsigned();
+            $table->foreign('superadmin_id')->references('id')->on('superadmins');
+
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ class CreateEbooksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ebooks');
+        Schema::drop('wartas');
     }
 }

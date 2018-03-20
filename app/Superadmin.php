@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Kontakkami extends Model
+class Superadmin extends Model
 {
     //
 }
