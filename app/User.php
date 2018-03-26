@@ -24,13 +24,27 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function Admin()
+    public function superadmin()
     {
-        return $this->hasMany(Admin::class);   
+        return $this->hasOne('App\Superadmin');
+    }
+    public function admin()
+    {
+        return $this->hasOne('App\Admin');   
     }
 
-    public function Profil()
+    public function dinasprov()
     {
-        return $this->hasMany(Profil::class);
+        return $this->hasOne('App\Dinasprov');   
+    }
+
+    public function inovator()
+    {
+        return $this->hasOne('App\Inovator');
+    }
+
+    public function juri()
+    {
+        return $this->hasOne('App\Juri');
     }
 }

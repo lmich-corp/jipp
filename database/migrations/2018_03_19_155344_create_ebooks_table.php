@@ -15,9 +15,12 @@ class CreateEbooksTable extends Migration
         Schema::create('ebooks', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('superadmin_id')->unsigned();
-            $table->foreign('superadmin_id')->references('id')->on('superadmins');
+            $table->foreign('superadmin_id')->references('id')->on('superadmins')
+                                                        ->onDelete('cascade')
+                                                        ->onUpdate('cascade');
             $table->string('nama');
             $table->string('nama_file');
+            $table->string('status');
             $table->timestamps();
         });
     }

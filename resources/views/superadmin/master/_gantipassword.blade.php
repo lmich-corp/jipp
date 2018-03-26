@@ -1,6 +1,7 @@
+{{ csrf_field() }}
 <div class="form-group">
 	{!! Form::label('password', 'Password') !!}
-	{!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Masukkan Password']); !!}
+	{!! Form::password('password_lama', ['class' => 'form-control', 'placeholder' => 'Masukkan Password']); !!}
 </div>
 
 <div class="form-group">
@@ -15,7 +16,7 @@
 		
 <div class="form-group" align="right">
 	{!!Form::button(
-	    '<span class="fa fa-plus"></span> Ganti Password',
+	    '<span class="fa fa-gear"></span> Ganti Password',
 	    array(
         'class'=>'btn btn-danger',
        'type'=>'submit')) 

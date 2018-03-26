@@ -6,17 +6,16 @@
 					{!! Form::label('role', 'Kategori') !!}
 					{!! Form::select('role', [ 
 						'-' => 'Pilih Kategori',
-						'adminprovinsi' => 'Admin Provinsi',
-						'admin' => 'Admin',
-						'inovator' => 'Inovator',
-						'juri' => 'Juri'
+						'superadmin' => 'Superadmin',
+						'admin' => 'Kabupaten / Kota',
+						'dinasprov' => 'OPD Provinsi'
 						], null, 
 						['class'=>'form-control']) !!}
 				
 		</div>
 		<div class="form-group">
 			{!! Form::label('name', 'Username') !!}
-			{!! Form::text('name', null, ['class'=>'form-control', 'placeholder' => 'Masukkan Username']) !!}
+			{!! Form::text('username', null, ['class'=>'form-control', 'placeholder' => 'Masukkan Username']) !!}
 		</div>
 
 		<div class="form-group">

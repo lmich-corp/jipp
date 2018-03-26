@@ -29,7 +29,7 @@
 			                      <h3 class="h4">Tambah Akun</h3>
 			                    </div>
 			                    <div class="card-body" style="color: red">
-									{!! Form::model(new App\user, ['url'=> 'storeuser']) !!}
+									{!! Form::model(new App\user, ['action'=> 'SuperadminController@storeuser', 'method'=>'Post']) !!}
 										@include('superadmin.master._user')
 								</div>
 								

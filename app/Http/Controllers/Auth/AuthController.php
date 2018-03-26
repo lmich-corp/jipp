@@ -28,7 +28,40 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $name = 'username';
+    protected function authenticated($request, $user)
+    {
+        if($user->role=="superadmin")
+        {
+            return redirect('superadmin');
+        }
+        elseif ($user->role=="inovator") 
+        {
+            return redirect('inovator');
+        }
+        elseif ($user->role=="juri")
+        {
+            return redirect('juri');
+        }
+
+        elseif ($user->role=="admin") 
+        {
+            return redirect('admins');
+        }
+
+        elseif ($user->role=="dinasprov") 
+        {
+            return redirect('dinasprov');
+        }
+
+        elseif ($user->role=="dinaskab") 
+        {
+            return redirect('dinaskab');
+        }
+            
+        return redirect('home');
+        
+    }
 
     /**
      * Create a new authentication controller instance.
@@ -69,4 +102,6 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+
 }

@@ -1,0 +1,37 @@
+navbar-inverse{
+      background-color: #a61515;
+    }
+    .navbar-inverse .navbar-nav > li > a {
+      color: #ffffff;
+    }
+    .navbar-inverse .navbar-nav > li > a:hover {
+      color: #fff;
+      background-color: red;
+    }
+    .dropdown-menu>li>a {
+      color: #ffffff;
+      background-color: #a61515;
+    }
+    .dropdown-menu>li>a:hover {
+    color: red;
+    background-color: #a61515;
+    }
+    .navbar-inverse .navbar-brand {
+      color: #ffffff;
+    }
+    .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    color: red;
+    background-color: #a61515;
+    }
+    .dropdown-menu{
+      padding: 0;
+    }
+    .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #fff;
+    background-color: #a61515;
+} 
+@media (max-width: 992px){
+  #sidebar {
+    position:static;
+  }
+}

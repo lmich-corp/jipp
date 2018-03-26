@@ -26,38 +26,44 @@
                       </div>
                     </div>
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Basic Table</h3>
+                      <h3 class="h4">Data Akun</h3>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover" id="dataTable">
+                          <?php $i=1; ?>
                           <thead>
                             <tr>
                             <th>#</th>
-                              <th>First Name</th>
-                              <th>Last Name</th>
-                              <th>Username</th>
+                              <th>Nama</th>
+                              <th>Username </th>
+                              <th>Level</th>
                             </tr>
                           </thead>
                           <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
+                            @foreach($user as $user)
                             <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>@fat</td>
+                                <th scope="row">{{$i++}}</th>
+                                <td>
+                                {{ $user->admin['nama'] }}
+
+                                {{ $user->inovator['nama'] }}
+
+                                {{ $user->dinasprov['nama'] }}
+
+                                {{ $user->dinaskab['nama'] }}
+
+                                {{ $user->superadmin['nama'] }}
+
+                                
+                                </td>
+                                <td>
+                                  {{ $user->username }}
+                                  
+                                </td>
+                                <td>{{$user->role}}</td>
                             </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                              <td>@twitter</td>
-                            </tr>
+                            @endforeach
                           </tbody>
                       </table>
                     </div>

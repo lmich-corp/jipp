@@ -26,9 +26,9 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-danger navbar-static-top">
+    <nav class="navbar navbar-dark navbar-static-top " style="background: #cc0000;">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header" style=" color: white;" >
 
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
@@ -47,7 +47,7 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/') }}">Beranda</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

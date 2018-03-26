@@ -16,12 +16,15 @@ class CreateIdeInovasisTable extends Migration
             $table->increments('id');
 
             $table->integer('ideprofil_id')->unsigned();
-            $table->foreign('ideprofil_id')->references('id')->on('ideprofils');
+            $table->foreign('ideprofil_id')->references('id')->on('ideprofils')
+                                                        ->onDelete('cascade')
+                                                        ->onUpdate('cascade');
 
             $table->string('instansi');
             $table->string('bidang');
             $table->text('permasalahan');
             $table->text('ide');
+            $table->string('status');
 
             $table->timestamps();
         });

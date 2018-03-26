@@ -14,6 +14,21 @@ class CreateAgendasTable extends Migration
     {
         Schema::create('agendas', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('superadmin_id')->unsigned();
+            $table->foreign('superadmin_id')->references('id')->on('superadmins')
+                                                        ->onDelete('cascade')
+                                                        ->onUpdate('cascade');
+            $table->integer('admin_id')->unsigned();
+            $table->foreign('admin_id')->references('id')->on('admins')
+                                                        ->onDelete('cascade')
+                                                        ->onUpdate('cascade');
+            $table->string('nama');
+            $table->string('nama_file');
+            $table->enum('kategori',['kabupaten','provinsi','nasional']);
+            $table->dateTime('jadwal');
+            $table->string('tempat');
+            $table->text('keterangan');
+            $table->string('status');
             $table->timestamps();
         });
     }

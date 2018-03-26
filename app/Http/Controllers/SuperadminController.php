@@ -36,6 +36,14 @@ use App\Agenda;
 
 use App\User; 
 
+use App\Dinasprov;
+
+use App\Dinaskab;
+
+use Auth;
+
+use Validator;
+
 class SuperadminController extends Controller
 {
     /**
@@ -131,17 +139,92 @@ class SuperadminController extends Controller
     // user
     public function user()
     {
-        return view('superadmin.user.index');
+        // $user=User::where('role','!=','superadmin')->get();
+
+        $user = User::orderBy('id', 'desc')->get();
+
+        // $user = User::all()->sortBy('role');
+        return view('superadmin.user.index',compact('user'));
     }
 
     public function createuser()
     {
+        // $user = 
         return view('superadmin.user.create');
     }
 
     public function storeuser(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|unique:users',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors('Username Tidak Boleh Kosong / Sama')->withInput();
+        }
+            $role = $request->input('role');
+            if ($role == 'superadmin'){
+                $user = User::create($request->all());
+                $user->username=$request->input('username');
+                $user->password=bcrypt($user->password);
+                $user->role=$request->input('role');
+                $user->email=$request->input('email');
+                $user->save();
+                
+                $admin = new Superadmin();
+
+                $admin->user_id = $user->id;
+
+                $admin->nama = $request->input('nama');
+
+
+                $admin->save();
+             
+       
+                return redirect('user')->with('success','Tersimpan');
+            }
+            elseif ($role == 'admin'){ 
+                $user = User::create($request->all());
+                $user->username=$request->input('username');
+                $user->password=bcrypt($user->password);
+                $user->role=$request->input('role');
+                $user->email=$request->input('email');
+                $user->save();
+                
+                $admin = new Admin();
+                $admin->superadmin_id = Auth::user()->id;
+                $admin->user_id = $user->id;
+                $admin->nama = $request->input('nama');
+               
+
+                $admin->save();
         
+       
+                return redirect('user')->with('success','Tersimpan');
+            }
+
+            elseif ($role == 'dinasprov'){ 
+                $user = User::create($request->all());
+                $user->username=$request->input('username');
+                $user->password=bcrypt($user->password);
+                $user->role=$request->input('role');
+                $user->email=$request->input('email');
+                $user->save();
+                
+                $admin = new Dinasprov();
+
+
+                $admin->user_id = $user->id;
+                $admin->superadmin_id = Auth::user()->id;
+                $admin->nama = $request->input('nama');
+               
+
+                $admin->save();
+        
+       
+                return redirect('user')->with('success','Tersimpan');
+            }
+
+            return redirect('createuser');
     }
 
     // ideinovasi
