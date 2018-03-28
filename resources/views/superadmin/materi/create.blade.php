@@ -29,8 +29,9 @@
 			                      <h3 class="h4">Tambah Ebook</h3>
 			                    </div>
 			                    <div class="card-body" style="color: red">
-									{!! Form::model('array', ['url'=> 'storemateri']) !!}
+									{!! Form::model('array', ['url'=> 'storemateri','enctype' => 'multipart/form-data']) !!}
 										@include('superadmin.master._materi')
+									{!! Form::close() !!}
 								</div>
 								
 							</div>

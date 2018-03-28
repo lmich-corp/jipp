@@ -11,6 +11,11 @@ class Dinaskab extends Model
     	return $this->belongsTo('App\User');
     }
 
+    public function admin()
+    {
+    	return $this->belongsTo('App\User');
+    }
+
     public function inovator(){
         return $this->hasMany('App\Inovator');
     }

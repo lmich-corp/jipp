@@ -1,4 +1,4 @@
-@extends ('admin.master._layout')
+@extends ('dinaskab.master._layout')
 @section ('body')
   
           <!-- Page Header-->
@@ -32,23 +32,43 @@
                       <div class="table-responsive">
                         <table class="table table-striped table-hover">
                           <?php $i=1; ?>
-                          <thead>
+                          <thead align="center">
                             <tr>
                             <th>#</th>
                               <th>Judul</th>
                               <th>Kategori</th>
-                              <th>Tanggal</th>
+                              <th>Nama Penghargaan</th>
+                              <th>Lokasi Penerapan</th>
+                              <th>Pilihan</th>
                             </tr>
                           </thead>
-                          <tbody>
-                          @foreach($proposal->proposal as $proposal)
+                          <tbody align="center">
+                             @foreach($proposal->proposal as $proposal)
                             <tr>
                                 <th scope="row">{{$i++}}</th>
+                                
                                 <td>{{$proposal->judul}}</td>
                                 <td>{{$proposal->kategori}}</td>
-                                <td>{{$proposal->tanggal}}</td>
+                                
+                                <td>
+                                  @foreach($penghargaan as $penghargaan)
+                                  {{$penghargaan->nama}}
+                                  <a href="{{url('dinaskab/cekpenghargaan/'.$penghargaan->id)}}" data-toggle="tooltip" title="Detail Penghargaan" class="fa fa fa-bars fa-lg" style="color: black"></a>
+                                  @endforeach
+                                </td>
+                                <td >
+                                  @foreach($penerapan as $penerapan)
+                                  {{$penerapan->lokasi}}
+                                  <a href="{{url('dinaskab/cekpenerapan/'.$penerapan->id)}}" data-toggle="tooltip" title="Detail Penerapan" class="fa fa fa-bars fa-lg" style="color: blue"></a>                             
+                                  
+                                  @endforeach
+                                </td >
+                                <td>
+                                  <a href="{{url('dinaskab/cekproposal/'.$proposal->id)}}" data-toggle="tooltip" title="Lihat Proposal" class="fa fa fa-info fa-lg" style="color: red"><i class="fa fa fa-bars fa-sm"></i></a>
+                                </td>
+
                             </tr>
-                            @endforeach
+                             @endforeach
                           </tbody>
                       </table>
                     </div>

@@ -14,6 +14,8 @@ use App\Proposal;
 
 use App\User;
 
+use App\Dinaskab;
+
 use Auth;
 
 use Validator;
@@ -56,38 +58,35 @@ class AdminController extends Controller
     // data inovator
     public function admininovator()
     {
-        $inovator=Auth::user()->admin;
+        $admin=Auth::user()->admin;
        
 
-        return view('admin.inovator.index', compact('inovator'));
+        return view('admin.inovator.index', compact('admin'));
     }
 
-    public function createinovator()
+    public function createdinaskab()
     {
         return view('admin.inovator.create');
     }
 
-    public function storeinovator(Request $request)
+    public function storedinaskab(Request $request)
     {
         $user = new User();
-        $profil = new Inovator();
-
-        $profil->nama=$request->input('nama');
-        $profil->admin_id=Auth::user()->admin->id;
         $user->username=$request->input('username');
         $user->password=bcrypt($request->input('password'));
         $user->email=$request->input('email');
-        $user->role="inovator";
+        $user->role="dinaskab";
         
         $user->save();
-        
-        $profil->user_id=$user->id;
-        $profil->save();
 
-        $proposal=new Proposal();
-        $proposal->inovator_id=$profil->id;
+        $profil = new Dinaskab();
+
+        $profil->nama=$request->input('nama');
+        $profil->admin_id=Auth::user()->admin->id;
+        $profil->user_id=$user->id;
         
-        $proposal->save();
+        $profil->save();
+        
         return redirect ('admininovator')->with('success','Tersimpan');
     }
 
@@ -95,9 +94,9 @@ class AdminController extends Controller
     {
         $admin=Auth::user()->admin;
 
-        $proposal=$admin->inovator->first();
+        $inovator=$admin->inovator->first();
 
-        return view('admin.proposal.index',compact('proposal'));
+        return view('admin.proposal.index',compact('inovator'));
     }
 
     public function passwordadmin()

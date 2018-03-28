@@ -75,6 +75,91 @@ class InovatorController extends Controller
 
     }
 
+    public function penerapan()
+    {
+
+        $inovator = Auth::user()->inovator->id;
+        $id = $inovator;
+        $penerapan = Penerapan::where('inovator_id', $id)->first();
+        return view('inovator.proposal.penerapan',compact('penerapan'));
+    }
+    
+
+
+    public function penerapanupdate(Request $request, $id)
+    {
+        $penrapan = Penerapan::where('id', $id)->first();
+        $penrapan->lokasi=$request->input('lokasi');
+        $penrapan->hasil=$request->input('hasil');
+        $penrapan->video=$request->input('video');
+
+        $nama = Auth::User()->username;
+        $file  = $request->file('foto');
+        $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+        $extension = $file->getClientOriginalExtension();
+        $fileName   = $nameonly.'_'.$nama.'.'.$extension;
+        $request->file('foto')->move("proposal/", $fileName);
+
+        $penrapan->foto = $fileName;
+
+        $penrapan->update();
+
+        return redirect('inovatorproposal')->with('success','Tersimpan');
+
+    }
+
+    public function penghargaan()
+    {
+
+        $inovator = Auth::user()->inovator->id;
+        $id = $inovator;
+        $penghargaan = Penghargaan::where('inovator_id', $id)->first();
+        return view('inovator.proposal.penghargaan',compact('penghargaan'));
+    }
+
+
+    public function penghargaanupdate(Request $request, $id)
+    {
+        $penghargaan = Penghargaan::where('id', $id)->first();
+        $penghargaan->nama=$request->input('nama');
+        $penghargaan->tahun=$request->input('tahun');
+        $penghargaan->sifat=$request->input('sifat');
+        $penghargaan->keterangan=$request->input('keterangan');
+
+        $nama = Auth::User()->username;
+        $file  = $request->file('foto');
+        $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+        $extension = $file->getClientOriginalExtension();
+        $fileName   = $nameonly.'_'.$nama.'.'.$extension;
+        $request->file('foto')->move("proposal/", $fileName);
+
+        $penghargaan->foto = $fileName;
+
+        $file1  = $request->file('foto1');
+        $nameonly1=preg_replace('/\..+$/', '', $file1->getClientOriginalName());
+        $extension1 = $file1->getClientOriginalExtension();
+        $fileName1   = $nameonly.'_'.$nama.'.'.$extension1;
+        $request->file('foto1')->move("proposal/", $fileName1);
+
+        $penghargaan->foto1 = $fileName1;
+
+        $file2  = $request->file('foto2');
+        $nameonly2=preg_replace('/\..+$/', '', $file2->getClientOriginalName());
+        $extension2 = $file2->getClientOriginalExtension();
+        $fileName2   = $nameonly2.'_'.$nama.'.'.$extension2;
+        $request->file('foto2')->move("proposal/", $fileName2);
+
+        $penghargaan->foto = $fileName2;
+
+        $penghargaan->update();
+
+        
+
+        return redirect('inovatorproposal')->with('success','Tersimpan');
+        
+
+    }
+
     public function gantipassword()
     {
         return view('inovator.password');

@@ -29,7 +29,7 @@
 			                      <h3 class="h4">Tambah Ebook</h3>
 			                    </div>
 			                    <div class="card-body" style="color: red">
-									{!! Form::model('array', ['url'=> 'storeebook']) !!}
+									{!! Form::model('array', ['url'=> 'storeebook','enctype' => 'multipart/form-data']) !!}
 										@include('superadmin.master._ebook')
 								</div>
 								

@@ -14,6 +14,9 @@ class CreateKontakkamisTable extends Migration
     {
         Schema::create('kontakkamis', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nama');
+            $table->string('email');
+            $table->longtext('pesan');
             $table->timestamps();
         });
     }

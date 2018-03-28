@@ -59,32 +59,7 @@ class CreateSuperadminsTable extends Migration
             $table->timestamps();
         });
     
-        Schema::create('inovator_provs', function (Blueprint $table) {
-            $table->increments('id');
-
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')
-                                                        ->onDelete('cascade')
-                                                        ->onUpdate('cascade');
-
-            $table->integer('dinasprov_id')->unsigned();
-            $table->foreign('dinasprov_id')->references('id')->on('dinasprovs')
-                                                        ->onDelete('cascade')
-                                                        ->onUpdate('cascade');
-            
-            $table->string('nama');
-            $table->string('nik');
-            $table->string('nip');
-            $table->string('jabatan');
-            $table->string('lembaga');
-            $table->string('alamat');
-            $table->string('kabupaten');
-            $table->string('provinsi');
-            $table->string('no_telp');
-            $table->string('email');
-            $table->string('foto_profil');
-            $table->timestamps();
-        });
+        
     }
 
     /**
@@ -96,6 +71,6 @@ class CreateSuperadminsTable extends Migration
     {
         Schema::drop('superadmins');
         Schema::drop('dinasprovs');
-        Schema::drop('inovator_provs');
+       
     }
 }

@@ -7,12 +7,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
-    
-    <link href="{{ asset('public/summernote/css/font-awesome.css')}}" rel="stylesheet">
-    
-    <link href="{{ asset('public/summernote/css/summernote.css')}}" rel="stylesheet" type="text/css" />
-    
-    <link href="{{ asset('public/summernote/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="admin/vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
@@ -27,9 +21,6 @@
     <link rel="stylesheet" href="admin/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="admin/img/favicon.ico">
-
-    
-
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -50,7 +41,7 @@
             <div class="navbar-holder d-flex align-items-center justify-content-between">
               <!-- Navbar Header-->
               <div class="navbar-header">
-                <!-- Navbar Brand --><a href="{{url('/admins')}}" class="navbar-brand">
+                <!-- Navbar Brand --><a href="{{url('/inovator')}}" class="navbar-brand">
                   <div class="brand-text brand-big"><span>JIPP Jawa Tengah</span><strong></strong></div>
                   <div class="brand-text brand-small"><strong>JIPP</strong></div></a>
                 <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
@@ -103,7 +94,11 @@
                         <div class="msg-body">
                           <h3 class="h5">Ashley Wood</h3><span>Sent You Message</span>
                         </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages   </strong></a></li>
+                    <li><a rel=
+
+
+
+                    "nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages   </strong></a></li>
                   </ul>
                 </li> -->
                 <!-- Languages dropdown    -->
@@ -127,15 +122,21 @@
           <div class="sidebar-header d-flex align-items-center">
             <div class="avatar"><img src="admin/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
             <div class="title">
-              <h1 class="h4">{{ Auth::user()->inovator->nama }}</h1>
+              <h1 class="h4"></h1>
               <p>Inovator</p>
             </div>
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">Menu</span>
           <ul class="list-unstyled">
-                    <li><a href="/inovator"> <i class="icon-home"></i>Beranda </a></li>
-                    <li><a href="/inovatorprofil"> <i class="icon-user"></i>Profil Anda</a></li>
-                    <li><a href="/inovatorproposal"> <i class="icon-padnote"></i>Proposal Anda</a></li>
+                    <li><a href="{{url('/inovator')}}"> <i class="icon-home"></i>Beranda </a></li>
+                    <li><a href="{{url('/inovatorprofil')}}"> <i class="icon-user"></i>Profil</a></li>
+                    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Proposal</a>
+                      <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                        <li><a href="/inovatorproposal">Proposal</a></li>
+                        <li><a href="/inovatorpenerapan">Penerapan</a></li>
+                        <li><a href="/inovatorpenghargaan">Penghargaan</a></li>
+                      </ul>
+                    </li>
                     <li><a href="/passwordinovator"> <i class="icon-user"></i>Ganti Password</a></li>
           </ul>
          
@@ -163,7 +164,7 @@
         </div>
       </div>
     </div>
-    
+    <!-- JavaScript files-->
     <script src="admin/vendor/jquery/jquery.min.js"></script>
     <script src="admin/vendor/popper.js/umd/popper.min.js"> </script>
     <script src="admin/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -173,6 +174,20 @@
     <script src="admin/js/charts-home.js"></script>
     <!-- Main File-->
     <script src="admin/js/front.js"></script>
-
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.tes').summernote({
+            height: 200,  
+            popover: {
+         image: [],
+         link: [],
+         air: []
+       },
+            
+        });
+        });
+      </script>
+      <link href="{{url('summernote/summernote.css')}}" rel="stylesheet">
+<script src="{{url('summernote/summernote.js')}}"></script>
   </body>
 </html>

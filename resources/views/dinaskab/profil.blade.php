@@ -1,4 +1,4 @@
-@extends ('admin.master._layout')
+@extends ('dinaskab.master._layout')
 @section ('body')
 	
     <!-- Page Header-->
@@ -29,7 +29,7 @@
                   <h3 class="h4">Update Profil</h3>
                 </div>
                 <div class="card-body" style="color: red">
-								{!! Form::model($profil, array('url'=>array('updateadmin', $profil->id),'files'=>true, 'method'=>'patch')) !!}
+								{!! Form::model($profil, array('url'=>array('updatedinaskab', $profil->id),'files'=>true, 'method'=>'patch')) !!}
 								@include('inovator.master._profil')
 								{!!Form::close() !!}
 						</div>

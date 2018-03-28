@@ -1,4 +1,4 @@
-@extends ('admin.master._layout')
+@extends ('dinaskab.master._layout')
 @section ('body')
     <!-- Page Header-->
           <header class="page-header">

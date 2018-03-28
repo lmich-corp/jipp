@@ -1,6 +1,6 @@
-@extends ('admin.master._layout')
+@extends ('dinasprov.master._layout')
 @section ('body')
-  
+        
           <!-- Page Header-->
           <header class="page-header">
             <div class="container-fluid">
@@ -20,10 +20,10 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-close">
-                      <div class="dropdown">
+                      <!-- <div class="dropdown">
                         <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Pilihan <i class="fa fa-ellipsis-v"></i></button>
                         <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                      </div>
+                      </div -->
                     </div>
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4">Data Proposal</h3>
@@ -32,23 +32,43 @@
                       <div class="table-responsive">
                         <table class="table table-striped table-hover">
                           <?php $i=1; ?>
-                          <thead>
+                          <thead align="center">
                             <tr>
                             <th>#</th>
                               <th>Judul</th>
                               <th>Kategori</th>
-                              <th>Tanggal</th>
+                              <th>Nama Penghargaan</th>
+                              <th>Lokasi Penerapan</th>
+                              <th>Pilihan</th>
                             </tr>
                           </thead>
-                          <tbody>
-                          @foreach($proposal->proposal as $proposal)
+                          <tbody align="center">
+                             @foreach($proposal->proposal as $proposal)
                             <tr>
                                 <th scope="row">{{$i++}}</th>
+                                
                                 <td>{{$proposal->judul}}</td>
                                 <td>{{$proposal->kategori}}</td>
-                                <td>{{$proposal->tanggal}}</td>
+                                
+                                <td>
+                                  @foreach($penghargaan as $penghargaan)
+                                  {{$penghargaan->nama}}
+                                  <a href="{{url('dinasprov/cekpenghargaan/'.$penghargaan->id)}}" data-toggle="tooltip" title="Detail Penghargaan" class="fa fa fa-bars fa-lg" style="color: black"></a>
+                                  @endforeach
+                                </td>
+                                <td >
+                                  @foreach($penerapan as $penerapan)
+                                  {{$penerapan->lokasi}}
+                                  <a href="{{url('dinasprov/cekpenerapan/'.$penerapan->id)}}" data-toggle="tooltip" title="Detail Penerapan" class="fa fa fa-bars fa-lg" style="color: blue"></a>                             
+                                  
+                                  @endforeach
+                                </td >
+                                <td>
+                                  <a href="{{url('dinasprov/cekproposal/'.$proposal->id)}}" data-toggle="tooltip" title="Lihat Proposal" class="fa fa fa-info fa-lg" style="color: red"><i class="fa fa fa-bars fa-sm"></i></a>
+                                </td>
+
                             </tr>
-                            @endforeach
+                             @endforeach
                           </tbody>
                       </table>
                     </div>

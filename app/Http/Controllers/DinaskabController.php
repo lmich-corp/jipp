@@ -6,6 +6,22 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Auth;
+
+use App\Inovator;
+
+use App\Dinaskab;
+
+use App\Proposal;
+
+use App\Penghargaan;
+
+use App\Penerapan;
+
+use App\User;
+
+use Validator;
+
 class DinaskabController extends Controller
 {
     /**
@@ -73,9 +89,16 @@ class DinaskabController extends Controller
         $profil->save();
 
         $proposal=new Proposal();
-        $proposal->inovator_id=$profil->id;
-        
+        $proposal->inovator_id=$profil->id;        
         $proposal->save();
+
+        $Penghargaan=new Penghargaan();
+        $Penghargaan->inovator_id=$profil->id;        
+        $Penghargaan->save();
+
+        $Penerapan=new Penerapan();
+        $Penerapan->inovator_id=$profil->id;        
+        $Penerapan->save();
         return redirect ('dinaskabinovator')->with('success','Tersimpan');
     }
 
@@ -85,7 +108,32 @@ class DinaskabController extends Controller
 
         $proposal=$dinaskab->inovator->first();
 
-        return view('dinaskab.proposal.index',compact('proposal'));
+        $penghargaan=$proposal->penghargaan;
+
+        $penerapan=$proposal->penerapan;
+
+        return view('dinaskab.proposal.index',compact('proposal', 'penghargaan', 'penerapan'));
+    }
+
+    public function detailpenerapan($id)
+    {
+
+        $penerapan = Penerapan::where('id', $id)->first();
+        return view('dinaskab.proposal.penerapan',compact('penerapan'));
+    }
+
+    public function detailpenghargaan($id)
+    {
+
+        $penghargaan = Penghargaan::where('id', $id)->first();
+        return view('dinaskab.proposal.penghargaan',compact('penghargaan'));
+    }
+
+    public function detailproposal($id)
+    {
+
+        $proposal = Proposal::where('id', $id)->first();
+        return view('dinaskab.proposal.lihatproposal',compact('proposal'));
     }
 
     public function passworddinaskab()

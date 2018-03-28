@@ -44,6 +44,7 @@ use Auth;
 
 use Validator;
 
+
 class SuperadminController extends Controller
 {
     /**
@@ -59,7 +60,8 @@ class SuperadminController extends Controller
     // ebook
     public function ebook()
     {
-        return view('superadmin.ebook.index');
+        $ebook = Ebook::orderBy('id', 'desc')->get();
+        return view('superadmin.ebook.index', compact('ebook'));
     }
 
     public function createebook()
@@ -67,9 +69,29 @@ class SuperadminController extends Controller
         return view('superadmin.ebook.create');
     }
 
-    public function storeebook()
+    public function storeebook(Request $request)
     {
-        
+        $superadmin=Auth::User()->superadmin;
+
+        $ebook = new Ebook();
+
+        $ebook->superadmin_id = $superadmin->id;
+        // $pengantarkota->jabatan = $request->input ('nama_surat');
+        // $pengantarkota->nama = $request->input ('nama_surat');
+        $nama = Auth::User()->username;
+        $file  = $request->file('nama_file');
+        $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+        $extension = $file->getClientOriginalExtension();
+        $fileName   = $nameonly.'_'.$nama.'.'.$extension;
+        $request->file('nama_file')->move("referensi/", $fileName);
+
+        $ebook->nama_file = $fileName;
+        $ebook->nama = $request->input('nama');
+        $ebook->status = 'Tidak Tampil';
+
+        $ebook->save();
+
+        return redirect('ebookadmin');
     }
 
     // warta
@@ -83,7 +105,7 @@ class SuperadminController extends Controller
         return view('superadmin.warta.create');
     }
 
-    public function storewarta()
+    public function storewarta(Request $request)
     {
         
     }
@@ -91,7 +113,8 @@ class SuperadminController extends Controller
     // regulasi
     public function regulasi()
     {
-        return view('superadmin.regulasi.index');
+        $regulasi = Regulasi::orderBy('id', 'desc')->get();
+        return view('superadmin.regulasi.index', compact('regulasi'));
     }
 
     public function createregulasi()
@@ -99,15 +122,36 @@ class SuperadminController extends Controller
         return view('superadmin.regulasi.create');
     }
 
-    public function storeregulasi()
+    public function storeregulasi(Request $request)
     {
-        
+        $superadmin=Auth::User()->superadmin;
+
+        $regulasi = new Regulasi();
+
+        $regulasi->superadmin_id = $superadmin->id;
+        // $pengantarkota->jabatan = $request->input ('nama_surat');
+        // $pengantarkota->nama = $request->input ('nama_surat');
+        $nama = Auth::User()->username;
+        $file  = $request->file('nama_file');
+        $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+        $extension = $file->getClientOriginalExtension();
+        $fileName   = $nameonly.'_'.$nama.'.'.$extension;
+        $request->file('nama_file')->move("referensi/", $fileName);
+
+        $regulasi->nama_file = $fileName;
+        $regulasi->nama = $request->input('nama');
+        $regulasi->status = 'Tidak Tampil';
+
+        $regulasi->save();
+
+        return redirect('regulasiadmin');
     }
 
     // materi
     public function materi()
     {
-        return view('superadmin.materi.index');
+        $materi = Materi::orderBy('id', 'desc')->get();
+        return view('superadmin.materi.index', compact('materi'));
     }
 
     public function createmateri()
@@ -115,9 +159,29 @@ class SuperadminController extends Controller
         return view('superadmin.materi.create');
     }
 
-    public function storemateri()
+    public function storemateri(Request $request)
     {
-        
+        $superadmin=Auth::User()->superadmin;
+
+        $materi = new Materi();
+
+        $materi->superadmin_id = $superadmin->id;
+        // $pengantarkota->jabatan = $request->input ('nama_surat');
+        // $pengantarkota->nama = $request->input ('nama_surat');
+        $nama = Auth::User()->username;
+        $file  = $request->file('nama_file');
+        $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+        $extension = $file->getClientOriginalExtension();
+        $fileName   = $nameonly.'_'.$nama.'.'.$extension;
+        $request->file('nama_file')->move("referensi/", $fileName);
+
+        $materi->nama_file = $fileName;
+        $materi->nama = $request->input('nama');
+        $materi->status = 'Tidak Tampil';
+
+        $materi->save();
+
+        return redirect('regulasiadmin');
     }
 
     // agenda
@@ -131,7 +195,7 @@ class SuperadminController extends Controller
         return view('superadmin.agenda.create');
     }
 
-    public function storeagenda()
+    public function storeagenda(Request $request)
     {
         
     }
@@ -156,7 +220,7 @@ class SuperadminController extends Controller
     public function storeuser(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'username' => 'required|unique:users',
+            'username' => 'unique:users',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors('Username Tidak Boleh Kosong / Sama')->withInput();
@@ -184,7 +248,7 @@ class SuperadminController extends Controller
             }
             elseif ($role == 'admin'){ 
                 $user = User::create($request->all());
-                $user->username=$request->input('username');
+                $user->username=$request->input('kabupaten');
                 $user->password=bcrypt($user->password);
                 $user->role=$request->input('role');
                 $user->email=$request->input('email');
@@ -201,24 +265,23 @@ class SuperadminController extends Controller
        
                 return redirect('user')->with('success','Tersimpan');
             }
-
             elseif ($role == 'dinasprov'){ 
                 $user = User::create($request->all());
-                $user->username=$request->input('username');
+                $user->username=$request->input('opd');
                 $user->password=bcrypt($user->password);
                 $user->role=$request->input('role');
                 $user->email=$request->input('email');
                 $user->save();
                 
-                $admin = new Dinasprov();
+                $opd = new Dinasprov();
 
 
-                $admin->user_id = $user->id;
-                $admin->superadmin_id = Auth::user()->id;
-                $admin->nama = $request->input('nama');
+                $opd->user_id = $user->id;
+                $opd->superadmin_id = Auth::user()->id;
+                $opd->nama = $request->input('nama');
                
 
-                $admin->save();
+                $opd->save();
         
        
                 return redirect('user')->with('success','Tersimpan');

@@ -1,4 +1,4 @@
-@extends ('admin.master._layout')
+@extends ('dinasprov.master._layout')
 @section ('body')
   
           <!-- Page Header-->
@@ -20,13 +20,13 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-close">
-                      <div class="dropdown">
+                      <!-- <div class="dropdown">
                         <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Pilihan <i class="fa fa-ellipsis-v"></i></button>
-                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="{{url('/createinovator')}}" class="dropdown-item edit"> <i class="fa fa-plus"></i>Tambah Inovator</a></div>
-                      </div>
+                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a></div>
+                      </div> -->
                     </div>
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Data Inovator</h3>
+                      <a href="{{url('/createinovator_prov')}}" class="btn btn-primary"> <i class="fa fa-plus"></i>Tambah Inovator</a>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">

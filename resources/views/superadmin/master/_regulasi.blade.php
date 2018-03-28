@@ -1,3 +1,4 @@
+{{ csrf_field() }}
 	<div class="form-group">
 		{!! Form::label('nama', 'Nama <span class="fa fa-edit"></span>', [], false) !!}
 		{!! Form::text('nama', null, ['class'=>'form-control']) !!}

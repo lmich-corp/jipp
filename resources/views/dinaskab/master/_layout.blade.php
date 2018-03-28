@@ -8,22 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="admin/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url('admin/vendor/bootstrap/css/bootstrap.min.css')}}">
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="admin/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url('admin/vendor/font-awesome/css/font-awesome.min.css')}}">
     <!-- Fontastic Custom icon font-->
-    <link rel="stylesheet" href="admin/css/fontastic.css">
+    <link rel="stylesheet" href="{{url('admin/css/fontastic.css')}}">
     <!-- Google fonts - Poppins -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="admin/css/style.red.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="{{url('admin/css/style.red.css')}}" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="admin/css/custom.css">
+    <link rel="stylesheet" href="{{url('admin/css/custom.css')}}">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="admin/img/favicon.ico">
+    <link rel="shortcut icon" href="{{asset('admin/img/favicon.ico')}}">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   </head>
   <body>
     <div class="page">
@@ -118,17 +119,17 @@
           <div class="sidebar-header d-flex align-items-center">
             <div class="avatar"><img src="admin/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
             <div class="title">
-              <h1 class="h4">{{ Auth::user()->admin->nama }}</h1>
+              <h1 class="h4">{{ Auth::user()->dinaskab->nama }}</h1>
               <p>Admin Inovator</p>
             </div>
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">Menu</span>
           <ul class="list-unstyled">
-                    <li><a href="/admins"> <i class="icon-home"></i>Beranda </a></li>
-                    <li><a href="/profiladmin"> <i class="icon-user"></i>Profil Admin</a></li>
-                    <li><a href="/admininovator"> <i class="icon-user"></i>Data Inovator</a></li>
-                    <li><a href="/adminproposal"> <i class="icon-interface-windows"></i>Proposal Inovasi</a></li>
-                    <li><a href="/passwordadmin"> <i class="icon-user"></i>Ganti Password</a></li>
+                    <li><a href="/dinaskab"> <i class="icon-home"></i>Beranda </a></li>
+                    <li><a href="/profildinaskab"> <i class="icon-user"></i>Profil Admin</a></li>
+                    <li><a href="/dinaskabinovator"> <i class="icon-user"></i>Data Inovator</a></li>
+                    <li><a href="/dinaskabproposal"> <i class="icon-interface-windows"></i>Proposal Inovasi</a></li>
+                    <li><a href="/passworddinaskab"> <i class="icon-user"></i>Ganti Password</a></li>
           </ul>
          
         </nav>
@@ -156,14 +157,39 @@
       </div>
     </div>
     <!-- JavaScript files-->
-    <script src="admin/vendor/jquery/jquery.min.js"></script>
-    <script src="admin/vendor/popper.js/umd/popper.min.js"> </script>
-    <script src="admin/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="admin/vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="admin/vendor/chart.js/Chart.min.js"></script>
-    <script src="admin/vendor/jquery-validation/jquery.validate.min.js"></script>
-    <script src="admin/js/charts-home.js"></script>
+    <script src="{{url('admin/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url('admin/vendor/popper.js/umd/popper.min.js')}}"> </script>
+    <script src="{{url('admin/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{url('admin/vendor/jquery.cookie/jquery.cookie.js')}}"> </script>
+    <script src="{{url('admin/vendor/chart.js/Chart.min.js')}}"></script>
+    <script src="{{url('admin/vendor/jquery-validation/jquery.validate.min.js')}}"></script>
+    <script src="{{url('admin/js/charts-home.js')}}"></script>
     <!-- Main File-->
-    <script src="admin/js/front.js"></script>
+    <script src="{{url('admin/js/front.js')}}"></script>
+
+    
+    <script type="text/javascript">
+      
+      $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+      });
+
+    </script>
+    
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.tes').summernote({
+          height: 200,  
+          popover: {
+           image: [],
+           link: [],
+           air: []
+         },
+         
+       });
+      });
+    </script>
+    <link href="{{url('summernote/summernote.css')}}" rel="stylesheet">
+    <script src="{{url('summernote/summernote.js')}}"></script>
   </body>
 </html>

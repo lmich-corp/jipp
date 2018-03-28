@@ -21,12 +21,12 @@
                   <div class="card">
                     <div class="card-close">
                       <div class="dropdown">
-                        <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Pilihan <i class="fa fa-ellipsis-v"></i></button>
-                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="{{url('/createinovator')}}" class="dropdown-item edit"> <i class="fa fa-plus"></i>Tambah Inovator</a></div>
+                        <!-- <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Pilihan <i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a> -->
                       </div>
                     </div>
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Data Inovator</h3>
+                      <a href="{{url('/createdinaskab')}}" class="btn btn-primary"> <i class="fa fa-plus"></i>Tambah Inovator</a>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">
@@ -41,12 +41,12 @@
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach($inovator->inovator as $inov)
+                            @foreach($admin->dinaskab as $dinkab)
                               <tr>
                                 <th scope="row">{{$i++}}</th>
-                                <td>{{$inov->nama}}</td>
-                                <td>{{$inov->nik}}</td>
-                                <td>{{$inov->nip}}</td>
+                                <td>{{$dinkab->nama}}</td>
+                                <td>{{$dinkab->nik}}</td>
+                                <td>{{$dinkab->nip}}</td>
                             </tr>
                             @endforeach
                           </tbody>

@@ -1,4 +1,4 @@
-@extends ('admin.master._layout')
+@extends ('dinaskab.master._layout')
 @section ('body')
 	
           <!-- Page Header-->
@@ -29,8 +29,9 @@
 			                      <h3 class="h4">Tambah Akun</h3>
 			                    </div>
 			                    <div class="card-body" style="color: red">
-									{!! Form::model(new App\Inovator, ['action'=> 'AdminController@storeinovator', 'method'=>'Post']) !!}
-										@include('admin.master._inovator')
+									{!! Form::model(new App\Inovator, ['action'=> 'DinaskabController@storeinovator', 'method'=>'Post']) !!}
+										@include('dinaskab.master._inovator')
+									{!!Form::close()!!}
 								</div>
 								
 							</div>

@@ -1,4 +1,4 @@
-@extends ('admin.master._layout')
+@extends ('dinasprov.master._layout')
 @section ('body')
 	
           <!-- Page Header-->
@@ -26,11 +26,12 @@
 			                      </div>
 			                    </div> -->
 			                    <div class="card-header d-flex align-items-center">
-			                      <h3 class="h4">Tambah Akun</h3>
+			                      <h3 class="h4">Tambah Inovator</h3>
 			                    </div>
 			                    <div class="card-body" style="color: red">
-									{!! Form::model(new App\Inovator, ['action'=> 'AdminController@storeinovator', 'method'=>'Post']) !!}
-										@include('admin.master._inovator')
+									{!! Form::model(new App\Inovator, ['action'=> 'DinasprovController@storeinovator_prov', 'method'=>'Post']) !!}
+										@include('dinasprov.master._inovator')
+									{!!Form::close()!!}
 								</div>
 								
 							</div>

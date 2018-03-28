@@ -38,6 +38,10 @@ class User extends Authenticatable
         return $this->hasOne('App\Dinasprov');   
     }
 
+    public function dinaskab()
+    {
+        return $this->hasOne('App\Dinaskab');
+    }
     public function inovator()
     {
         return $this->hasOne('App\Inovator');

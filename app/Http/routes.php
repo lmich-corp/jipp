@@ -28,7 +28,23 @@ Route::get('/referensi', 'HomeController@referensi');
 	Route::get('/createuser', 'SuperadminController@createuser');
 	Route::post('/storeuser', 'SuperadminController@storeuser');
 
+	//inovator
+	// Route::get('/inovator', 'InovatorController@index');
+	
+	Route::get('/inovatorprofil', 'InovatorController@profil');
+	Route::patch('/updateprofil/{inovator}', 'InovatorController@profilupdate');
+	
+	Route::get('/inovatorproposal', 'InovatorController@proposal');
+	Route::post('/proposalupdate/{id}', 'InovatorController@proposalupdate');
 
+	Route::get('/inovatorpenghargaan', 'InovatorController@penghargaan');
+	Route::patch('/penghargaanupdate/{penghargaan}', 'InovatorController@penghargaanupdate');
+
+	Route::get('/inovatorpenerapan', 'InovatorController@penerapan');
+	Route::patch('/penerapanupdate/{penerapan}', 'InovatorController@penerapanupdate');
+
+	Route::get('/passwordinovator', 'InovatorController@gantipassword');
+	Route::post('/storepasswordinv', 'InovatorController@storepassword');
 	
 
 Route::group([
@@ -80,8 +96,8 @@ Route::group([
 	Route::patch('/updateadmin/{admin}', 'AdminController@profilupdate');
 
 	Route::get('/admininovator', 'AdminController@admininovator');
-	Route::get('/createinovator', 'AdminController@createinovator');
-	Route::post('/storeinovator', 'AdminController@storeinovator');
+	Route::get('/createdinaskab', 'AdminController@createdinaskab');
+	Route::post('/storedinaskab', 'AdminController@storedinaskab');
 
 	Route::get('/editinovator/{id}','AdminController@editinovator' );
 	Route::patch('/updateinovator{id}', 'AdminController@updateinovator');
@@ -98,9 +114,9 @@ Route::group([
 	Route::get('/profildinasprov', 'DinasprovController@profildinasprov');
 	Route::patch('/updatedinasprov/{dinasprov}', 'DinasprovController@profilupdate');
 
-	Route::get('/dinasprovinovator_pro_prov', 'DinasprovController@dinasprovinovator_pro_prov');
-	Route::get('/createinovator_pro_prov', 'DinasprovController@createinovator_pro_prov');
-	Route::post('/storeinovator', 'DinasprovController@storeinovator');
+	Route::get('/dinasprovinovator', 'DinasprovController@dinasprovinovator_prov');
+	Route::get('/createinovator_prov', 'DinasprovController@createinovator_prov');
+	Route::post('/storeinovator_prov', 'DinasprovController@storeinovator_prov');
 
 	Route::get('/editinovator_prov/{id}','DinasprovController@editinovator_prov' );
 	Route::patch('/updateinovator_pro_prov{id}', 'DinasprovController@updateinovator_pro_prov');
@@ -109,40 +125,36 @@ Route::group([
 	Route::get('/lihatproposal', 'DinasprovController@lihatproposal');
 	Route::get('/editproposal/{id}', 'DinasprovController@editproposal');
 	Route::patch('/updateproposal/{id}', 'DinasprovController@updateproposal');
+	Route::get('/dinasprov/cekpenerapan/{id}', 'DinasprovController@detailpenerapan');
+	Route::get('/dinasprov/cekpenghargaan/{id}', 'DinasprovController@detailpenghargaan');
+	Route::get('/dinasprov/cekproposal/{id}', 'DinasprovController@detailproposal');
 
 	Route::get('/passwordadmin', 'DinasprovController@passwordadmin');
 
 
 	//dinaskab
-	Route::get('/dinaskab', 'DinasprovController@index');
-	Route::get('/profildinaskab', 'DinasprovController@profildinaskab');
-	Route::patch('/updateadinaskab/{dinaskab}', 'DinasprovController@profilupdate');
+	Route::get('/dinaskab', 'DinaskabController@index');
+	Route::get('/profildinaskab', 'DinaskabController@profildinaskab');
+	Route::patch('/updatedinaskab/{id}', 'DinaskabController@profilupdate');
 
-	Route::get('/dinaskabinovator', 'DinasprovController@dinaskabinovator');
-	Route::get('/createinovator', 'DinasprovController@createinovator');
-	Route::post('/storeinovator', 'DinasprovController@storeinovator');
+	Route::get('/dinaskabinovator', 'DinaskabController@dinaskabinovator');
+	Route::get('/createinovator', 'DinaskabController@createinovator');
+	Route::post('/storeinovator', 'DinaskabController@storeinovator');
 
-	Route::get('/editinovator/{id}','DinasprovController@editinovator' );
-	Route::patch('/updateinovator{id}', 'DinasprovController@updateinovator');
+	Route::get('/editinovator/{id}','DinaskabController@editinovator' );
+	Route::patch('/updateinovator{id}', 'DinaskabController@updateinovator');
 
-	Route::get('/dinaskabproposal', 'DinasprovController@dinaskabproposal');
-	Route::get('/lihatproposal', 'DinasprovController@lihatproposal');
-	Route::get('/editproposal/{id}', 'DinasprovController@editproposal');
-	Route::patch('/updateproposal/{id}', 'DinasprovController@updateproposal');
+	Route::get('/dinaskabproposal', 'DinaskabController@dinaskabproposal');
+	Route::get('/lihatproposal', 'DinaskabController@lihatproposal');
+	Route::get('/editproposal/{id}', 'DinaskabController@editproposal');
+	Route::patch('/updateproposal/{id}', 'DinaskabController@updateproposal');
+	Route::get('/dinaskab/cekpenerapan/{id}', 'DinaskabController@detailpenerapan');
+	Route::get('/dinaskab/cekpenghargaan/{id}', 'DinaskabController@detailpenghargaan');
+	Route::get('/dinaskab/cekproposal/{id}', 'DinaskabController@detailproposal');
 
-	Route::get('/passwordadmin', 'DinasprovController@passwordadmin');
+	Route::get('/passwordadmin', 'DinaskabController@passwordadmin');
 	
-	//inovator
-	// Route::get('/inovator', 'InovatorController@index');
 	
-	Route::get('/inovatorprofil', 'InovatorController@profil');
-	Route::patch('/updateprofil/{inovator}', 'InovatorController@profilupdate');
-	
-	Route::get('/inovatorproposal', 'InovatorController@proposal');
-	Route::post('/proposalupdate/{id}', 'InovatorController@proposalupdate');
-
-	Route::get('/passwordinovator', 'InovatorController@gantipassword');
-	Route::post('/storepasswordinv', 'InovatorController@storepassword');
 	
 });
 

@@ -19,8 +19,9 @@ class CreateAdminsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')
                                                         ->onDelete('cascade')
                                                         ->onUpdate('cascade');
-            $table->integer('superadmin_id')->unsigned();
+            $table->integer('superadmin_id')->nullable()->unsigned();
             $table->foreign('superadmin_id')->references('id')->on('superadmins')
+                                                        
                                                         ->onDelete('cascade')
                                                         ->onUpdate('cascade');
 
@@ -77,7 +78,10 @@ class CreateAdminsTable extends Migration
             $table->foreign('dinsakab_id')->references('id')->on('dinaskabs')
                                                         ->onDelete('cascade')
                                                         ->onUpdate('cascade');
-            
+            $table->integer('dinasprov_id')->unsigned();
+            $table->foreign('dinasprov_id')->references('id')->on('dinasprovs')
+                                                        ->onDelete('cascade')
+                                                        ->onUpdate('cascade');
             $table->string('nama');
             $table->string('nik');
             $table->string('nip');

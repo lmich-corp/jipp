@@ -29,8 +29,9 @@
 			                      <h3 class="h4">Tambah Regulasi</h3>
 			                    </div>
 			                    <div class="card-body" style="color: red">
-									{!! Form::model('array', ['url'=> 'storeregulasi']) !!}
+									{!! Form::model(new App\Regulasi, ['url'=> 'storeregulasi','enctype' => 'multipart/form-data']) !!}
 										@include('superadmin.master._regulasi')
+									{!! Form::close() !!}
 								</div>
 								
 							</div>

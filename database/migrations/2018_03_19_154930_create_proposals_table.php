@@ -17,8 +17,6 @@ class CreateProposalsTable extends Migration
 
             $table->integer('inovator_id')->unsigned();
             $table->foreign('inovator_id')->references('id')->on('inovators')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('inovatorprov_id')->unsigned();
-            $table->foreign('inovatorprov_id')->references('id')->on('inovator_provs')->onDelete('cascade')->onUpdate('cascade');
             $table->string('judul');
             $table->string('kategori');
             $table->date('tanggal');

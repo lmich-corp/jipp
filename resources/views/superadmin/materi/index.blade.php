@@ -21,12 +21,12 @@
                   <div class="card">
                     <div class="card-close">
                       <div class="dropdown">
-                        <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Pilihan <i class="fa fa-ellipsis-v"></i></button>
-                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="{{url('/superadmin')}}" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="{{url('/createmateriadmin')}}" class="dropdown-item edit"> <i class="fa fa-plus"></i>Tambah</a></div>
+                        <!-- <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Pilihan <i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="{{url('/superadmin')}}" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="{{url('/createmateriadmin')}}" class="dropdown-item edit"> <i class="fa fa-plus"></i>Tambah</a></div> -->
                       </div>
                     </div>
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Basic Table</h3>
+                      <a href="{{url('/createmateriadmin')}}" class="btn btn-primary"> Tambah Akun <i class="fa fa-plus"></i></a>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">

@@ -29,7 +29,7 @@
 			                      <h3 class="h4">Tambah Akun</h3>
 			                    </div>
 			                    <div class="card-body" style="color: red">
-									{!! Form::model(new App\Inovator, ['action'=> 'AdminController@storeinovator', 'method'=>'Post']) !!}
+									{!! Form::model(new App\Dinaskab, ['action'=> 'AdminController@storedinaskab', 'method'=>'Post']) !!}
 										@include('admin.master._inovator')
 								</div>
 								

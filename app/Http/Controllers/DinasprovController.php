@@ -6,6 +6,22 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Auth;
+
+use App\Dinasprov;
+
+use App\Inovator;
+
+use App\Proposal;
+
+use App\Penerapan;
+
+use App\Penghargaan;
+
+use App\User;
+
+use validator;
+
 class DinasprovController extends Controller
 {
     /**
@@ -20,15 +36,15 @@ class DinasprovController extends Controller
 
      public function profildinasprov()
     {
-        $inovator = Auth::user()->id;
-        $id = $inovator;
-        $profil = dinasprov::where('user_id', $id)->first();
+        $opd = Auth::user()->id;
+        $id = $opd;
+        $profil = Dinasprov::where('user_id', $id)->first();
         return view('dinasprov.profil', compact('profil'));
     }
 
     public function profilupdate(Request $request, $id)
     {
-        $profil = dinasprov::where('id', $id)->first();
+        $profil = Dinasprov::where('id', $id)->first();
         $profil->nama=$request->input('nama');
         $profil->nik=$request->input('nik');
         $profil->nip=$request->input('nip');
@@ -62,6 +78,7 @@ class DinasprovController extends Controller
 
         $profil->nama=$request->input('nama');
         $profil->dinasprov_id=Auth::user()->dinasprov->id;
+        $profil->dinsakab_id=null;
         $user->username=$request->input('username');
         $user->password=bcrypt($request->input('password'));
         $user->email=$request->input('email');
@@ -73,9 +90,17 @@ class DinasprovController extends Controller
         $profil->save();
 
         $proposal=new Proposal();
-        $proposal->inovator_id=$profil->id;
-        
+        $proposal->inovator_id=$profil->id;        
         $proposal->save();
+
+        $Penghargaan=new Penghargaan();
+        $Penghargaan->inovator_id=$profil->id;        
+        $Penghargaan->save();
+
+        $Penerapan=new Penerapan();
+        $Penerapan->inovator_id=$profil->id;        
+        $Penerapan->save();
+
         return redirect ('dinasprovinovator')->with('success','Tersimpan');
     }
 
@@ -85,7 +110,32 @@ class DinasprovController extends Controller
 
         $proposal=$dinasprov->inovator->first();
 
-        return view('dinasprov.proposal.index',compact('proposal'));
+        $penghargaan=$proposal->penghargaan;
+
+        $penerapan=$proposal->penerapan;
+
+        return view('dinasprov.proposal.index',compact('proposal', 'penghargaan', 'penerapan'));
+    }
+
+    public function detailpenerapan($id)
+    {
+
+        $penerapan = Penerapan::where('id', $id)->first();
+        return view('dinasprov.proposal.penerapan',compact('penerapan'));
+    }
+
+    public function detailpenghargaan($id)
+    {
+
+        $penghargaan = Penghargaan::where('id', $id)->first();
+        return view('dinasprov.proposal.penghargaan',compact('penghargaan'));
+    }
+
+    public function detailproposal($id)
+    {
+
+        $proposal = Proposal::where('id', $id)->first();
+        return view('dinasprov.proposal.lihatproposal',compact('proposal'));
     }
 
     public function passworddinasprov()

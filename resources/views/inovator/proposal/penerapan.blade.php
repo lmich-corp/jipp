@@ -27,14 +27,13 @@
 		                      </div>
 		                    </div>
 		                    <div class="card-header d-flex align-items-center">
-		                      <h3 class="h4">Proposal Inovasi</h3>
+		                      <h3 class="h4">Penerapan Inovasi</h3>
 		                    </div>
 		                    <div class="card-body" style="color: red">
 								
-								{!! Form::model($proposal, ['route' => ['proposal.update', $proposal->id],'method'=>'PATCH','id'=>'formProposal']) !!}
-								@include('inovator.proposal._proposal')
+								{!! Form::model($penerapan, array('url'=>array('penerapanupdate', $penerapan->id),'files'=>true, 'method'=>'patch')) !!}
+								@include('inovator.proposal._penerapan')
 								{!!Form::close() !!}
-								
 							</div>
 							
 						</div>
